@@ -80,7 +80,7 @@ Route _createRoute() {
     pageBuilder: (context, animation, secondaryAnimation) => Page2(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(0.0, 1.0);
-      var end = Offset.zero;
+      var end = Offset.zero; // can be use like that Offset(0.0,0.0)
       var curve = Curves.ease;
 
       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
