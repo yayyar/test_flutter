@@ -59,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            SnackBarPage(),
           ],
         ),
       ),
@@ -117,3 +118,29 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class SnackBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: RaisedButton(
+        child: Text('Show SnackBar'),
+        onPressed: (){
+          final snackBar = SnackBar(
+            content: Text('Yay! A SnackBar!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              textColor: Colors.yellow,
+              onPressed: () {
+                // Some code to undo the change
+                print('Hello SnackBar');
+              },
+            ),
+          );
+          Scaffold.of(context).showSnackBar(snackBar);
+        },
+      ),
+    );
+  }
+}
+
