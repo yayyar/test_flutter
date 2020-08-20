@@ -2,6 +2,11 @@
 
 A new Flutter project.
 
+
+# Font resource
+- [Google font](https://fonts.google.com/)
+- [Font Package](https://pub.dev/packages/google_fonts)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
