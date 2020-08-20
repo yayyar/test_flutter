@@ -36,8 +36,16 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       tabBuilder: (context, index){
-        return Center(
-          child: Text(items[index]),
+        return CupertinoPageScaffold(
+          navigationBar: CupertinoNavigationBar(
+            middle: Text(items[index]),
+          ),
+          child: Center(
+            child: Text(
+              'This is tab #$index',
+              style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle,
+            ),
+          ),
         );
       },
     );
