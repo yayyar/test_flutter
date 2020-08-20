@@ -6,6 +6,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+      theme: CupertinoThemeData(
+        textTheme: CupertinoTextThemeData(
+          navLargeTitleTextStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30.0,
+              color: CupertinoColors.activeBlue),
+        ),
+      ),
       home: HomePage(),
     );
   }
@@ -35,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      tabBuilder: (context, index){
+      tabBuilder: (context, index) {
         return CupertinoPageScaffold(
           navigationBar: CupertinoNavigationBar(
             middle: Text(items[index]),
@@ -43,7 +51,8 @@ class _HomePageState extends State<HomePage> {
           child: Center(
             child: Text(
               'This is tab #$index',
-              style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle,
+              style:
+                  CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle,
             ),
           ),
         );
@@ -51,4 +60,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
