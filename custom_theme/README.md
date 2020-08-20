@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+# For more detail
+- [Use themes to share colors and font styles](https://flutter.dev/docs/cookbook/design/themes)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
