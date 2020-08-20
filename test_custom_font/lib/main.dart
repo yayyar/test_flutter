@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: 'Dancing'
+        fontFamily: 'Dancing' // All App Page font
       ),
       home: MyHomePage(title: 'Custom Font Demo'),
     );
