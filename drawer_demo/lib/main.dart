@@ -1,3 +1,4 @@
+import 'package:drawer_demo/nav_components/NavHome.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -73,10 +74,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Drawer Header',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),),
+                  Text(
+                    'Drawer Header',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                   Center(
                     child: FlutterLogo(
                       size: 100,
@@ -90,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             ListTile(
+              leading: Icon(Icons.home),
               title: Text('Item 1'),
               onTap: () {
                 // Update the state of the app
@@ -99,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.apps),
               title: Text('Item 2'),
               onTap: () {
                 // Update the state of the app
@@ -125,7 +130,7 @@ class SnackBarPage extends StatelessWidget {
     return Container(
       child: RaisedButton(
         child: Text('Show SnackBar'),
-        onPressed: (){
+        onPressed: () {
           final snackBar = SnackBar(
             content: Text('Yay! A SnackBar!'),
             action: SnackBarAction(
@@ -143,4 +148,3 @@ class SnackBarPage extends StatelessWidget {
     );
   }
 }
-
