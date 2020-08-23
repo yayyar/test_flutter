@@ -40,11 +40,17 @@ class MyCustomFormState extends State<MyCustomForm> {
   final myController1 = TextEditingController();
   var errorTxt = '';
 
+  // Define the focus node. To manage the lifecycle, create the FocusNode in
+  // the initState method, and clean it up in the dispose method.
+
+  FocusNode myFocusNode;
+
   @override
   void initState() {
     super.initState();
     //start listening to changes
     myController.addListener(_printLatestValue);
+    myFocusNode = FocusNode();
   }
 
   @override
@@ -58,6 +64,7 @@ class MyCustomFormState extends State<MyCustomForm> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextFormField(
+              autofocus: true,
               decoration: InputDecoration(
                 labelText: 'Enter',
               ),
@@ -78,6 +85,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 errorText: errorTxt,
               ),
               controller: myController,
+              focusNode: myFocusNode,
             ),
           ),
           Padding(
@@ -99,6 +107,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                   if (_formKey.currentState.validate()) {
                     Scaffold.of(context).showSnackBar(
                         SnackBar(content: Text('Processing Data')));
+                    // give focus to the text field using myFocusNode.
+                    myFocusNode.requestFocus();
                   }
                 },
                 child: Text('Submit'),
@@ -144,6 +154,8 @@ class MyCustomFormState extends State<MyCustomForm> {
   @override
   void dispose() {
     myController.dispose();
+    // Clean up the focus node when the Form is disposed.
+    myFocusNode.dispose();
     super.dispose();
   }
 }
