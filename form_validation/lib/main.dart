@@ -37,6 +37,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
   final myController = TextEditingController();
+  final myController1 = TextEditingController();
   var errorTxt = '';
 
   @override
@@ -73,10 +74,20 @@ class MyCustomFormState extends State<MyCustomForm> {
             child: TextField(
               decoration: InputDecoration(
                 //border: InputBorder.none,
-                hintText: 'Enter something',
+                hintText: 'Enter data1',
                 errorText: errorTxt,
               ),
               controller: myController,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              decoration: InputDecoration(
+                //border: InputBorder.none,
+                hintText: 'Enter data2',
+              ),
+              controller: myController1,
             ),
           ),
           Padding(
@@ -104,7 +115,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        content: Text(myController.text),
+                        content: Text('Data1: ${myController.text} Data2: ${myController1.text}'),
                       );
                     },
                   );
