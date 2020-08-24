@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:list_view/ui/CustomListPage.dart';
 import 'package:list_view/ui/GridListPage.dart';
 import 'package:list_view/ui/HorizontalListPage.dart';
 
@@ -70,6 +71,23 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 // Go to next screen
                 Navigator.push(context, MaterialPageRoute(builder: (context) => GridListPage()));
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32.0,8.0,32.0,8.0),
+            child: RaisedButton(
+              child: Text('Custom List'),
+              onPressed: (){
+                // Go to next screen
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CustomListPage(
+                  items: List<ListItem>.generate(
+                    1000,
+                        (i) => i % 6 == 0
+                        ? HeadingItem("Heading $i")
+                        : MessageItem("Sender $i", "Message body $i"),
+                  ),
+                )));
               },
             ),
           )
