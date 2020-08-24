@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:list_view/ui/GridListPage.dart';
 import 'package:list_view/ui/HorizontalListPage.dart';
 
 void main() {
@@ -59,6 +60,16 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 // Go to next screen
                 Navigator.push(context, MaterialPageRoute(builder: (context) => HorizontalListPage()));
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32.0,8.0,32.0,8.0),
+            child: RaisedButton(
+              child: Text('Grid List'),
+              onPressed: (){
+                // Go to next screen
+                Navigator.push(context, MaterialPageRoute(builder: (context) => GridListPage()));
               },
             ),
           )
