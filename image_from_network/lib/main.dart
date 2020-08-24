@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_from_network/ui/PageOne.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -40,7 +41,7 @@ class MyHomePage extends StatelessWidget {
               // To work with images from a URL, use the Image.network() constructor.
               child: Image.network(
                 'https://picsum.photos/250?image=9',
-                height: 150.0,
+                height: 100.0,
               ),
               onTap: () {
                 Navigator.of(context).push(_createRoute());
@@ -52,16 +53,25 @@ class MyHomePage extends StatelessWidget {
             FadeInImage.assetNetwork(
               placeholder: 'images/circular_progress_indicator_small.gif',
               image:
-              'https://github.com/flutter/plugins/raw/master/packages/video_player/video_player/doc/demo_ipod.gif?raw=true',
-              height: 150.0,
+              'https://picsum.photos/250?image=15',
+              height: 100.0,
             ),
 
             //in-memory
             FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
               image:
-                  'https://github.com/flutter/plugins/raw/master/packages/video_player/video_player/doc/demo_ipod.gif?raw=true',
-              height: 150.0,
+                  'https://picsum.photos/250?image=10',
+              height: 100.0,
+            ),
+
+            //cache images as they’re downloaded from the network
+            //cache image can be used in offline state
+            CachedNetworkImage(
+              placeholder: (context, url) => CircularProgressIndicator(),
+              imageUrl:
+              'https://picsum.photos/250?image=16',
+              height: 100.0,
             ),
           ],
         ),
