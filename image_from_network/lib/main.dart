@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:image_from_network/ui/PageOne.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,20 +36,54 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            // To work with images from a URL, use the Image.network() constructor.
-            Image.network(
-              'https://picsum.photos/250?image=9',
+            GestureDetector(
+              // To work with images from a URL, use the Image.network() constructor.
+              child: Image.network(
+                'https://picsum.photos/250?image=9',
+                height: 150.0,
+              ),
+              onTap: () {
+                Navigator.of(context).push(_createRoute());
+              },
+            ),
+
+            //FadeInImage works with images of any type: in-memory, local assets, or images from the internet.
+            //local assets
+            FadeInImage.assetNetwork(
+              placeholder: 'images/circular_progress_indicator_small.gif',
+              image:
+              'https://github.com/flutter/plugins/raw/master/packages/video_player/video_player/doc/demo_ipod.gif?raw=true',
               height: 150.0,
             ),
 
-            //supports animated gifs.
-            Image.network(
-              'https://github.com/flutter/plugins/raw/master/packages/video_player/video_player/doc/demo_ipod.gif?raw=true',
-              height: 400.0,
+            //in-memory
+            FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image:
+                  'https://github.com/flutter/plugins/raw/master/packages/video_player/video_player/doc/demo_ipod.gif?raw=true',
+              height: 150.0,
             ),
           ],
         ),
       ),
     );
+  }
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => PageOne(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var begin = Offset(0.0, 1.0);
+          var end = Offset.zero; // can be use like that Offset(0.0,0.0)
+          var curve = Curves.ease;
+
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var offsetAnimation = animation.drive(tween);
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        });
   }
 }
