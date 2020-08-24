@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:list_view/ui/CustomListPage.dart';
 import 'package:list_view/ui/GridListPage.dart';
 import 'package:list_view/ui/HorizontalListPage.dart';
+import 'package:list_view/ui/LongListPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -90,7 +91,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 )));
               },
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32.0,8.0,32.0,8.0),
+            child: RaisedButton(
+              child: Text('Long List'),
+              onPressed: (){
+                // Go to next screen
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LongListPage(
+                  items: List<String>.generate(10000, (i) => "Item $i"),
+                )));
+              },
+            ),
+          ),
         ],
       ),
     );
