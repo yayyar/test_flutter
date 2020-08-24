@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:list_view/ui/HorizontalListPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,6 +52,16 @@ class _MyHomePageState extends State<MyHomePage> {
             leading: Icon(Icons.phone),
             title: Text('Phone'),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32.0,8.0,32.0,8.0),
+            child: RaisedButton(
+              child: Text('Horizontal List'),
+              onPressed: (){
+                // Go to next screen
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HorizontalListPage()));
+              },
+            ),
+          )
         ],
       ),
     );
