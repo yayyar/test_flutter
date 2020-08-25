@@ -9,7 +9,7 @@ void main() {
     home: TodosScreen(
       todos: List.generate(
         20,
-            (i) => Todo(
+        (i) => Todo(
           'Todo $i',
           'A description of what needs to be done for Todo $i',
         ),
@@ -38,10 +38,25 @@ class TodosScreen extends StatelessWidget {
             // Notice that you're not only creating a DetailScreen, you're
             // also passing the current todo through to it.
             onTap: () {
+              //Method One------
+//              Navigator.push(
+//                context,
+//                MaterialPageRoute(
+//                  builder: (context) => DetailScreen(todo: todos[index]),
+//                ),
+//              );
+              //End Method One------
+
+              //Method Two
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(todo: todos[index]),
+                  builder: (context) => DetailScreen(),
+                  // Pass the arguments as part of the RouteSettings. The
+                  // DetailScreen reads the arguments from these settings.
+                  settings: RouteSettings(
+                    arguments: todos[index],
+                  ),
                 ),
               );
             },
