@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:navigate_with_arguments/ui/PageOne.dart';
+import 'package:navigate_with_arguments/ui/PageTwo.dart';
+import 'model/ScreenArguments.dart';
 
 void main() => runApp(MyApp());
 
@@ -6,9 +9,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Provide a function to handle named routes. Use this function to
-      // identify the named route being pushed, and create the correct
-      // Screen.
+        // Provide a function to handle named routes. Use this function to
+        // identify the named route being pushed, and create the correct
+        // Screen.
         onGenerateRoute: (settings) {
           // If you push the PassArguments route
           if (settings.name == PassArgumentsScreen.routeName) {
@@ -20,6 +23,16 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (context) {
                 return PassArgumentsScreen(
+                  title: args.title,
+                  message: args.message,
+                );
+              },
+            );
+          } else if (settings.name == PageTwo.routeName) {
+            final ScreenArguments args = settings.arguments;
+            return MaterialPageRoute(
+              builder: (context) {
+                return PageTwo(
                   title: args.title,
                   message: args.message,
                 );
@@ -38,6 +51,7 @@ class MyApp extends StatelessWidget {
         routes: {
           ExtractArgumentsScreen.routeName: (context) =>
               ExtractArgumentsScreen(),
+          PageOne.routeName: (context) => PageOne(),
         });
   }
 }
@@ -85,6 +99,28 @@ class HomeScreen extends StatelessWidget {
                     'Accept Arguments Screen',
                     'This message is extracted in the onGenerateRoute function.',
                   ),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('Go To PageOne'),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  PageOne.routeName,
+                  arguments:
+                      ScreenArguments('This is page one', 'Hello page one'),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('Go To PageTwo'),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  PageTwo.routeName,
+                  arguments:
+                  ScreenArguments('This is page Two', 'Hello page Two'),
                 );
               },
             ),
@@ -145,13 +181,4 @@ class PassArgumentsScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-// You can pass any object to the arguments parameter. In this example,
-// create a class that contains both a customizable title and message.
-class ScreenArguments {
-  final String title;
-  final String message;
-
-  ScreenArguments(this.title, this.message);
 }
