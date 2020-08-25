@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navigate_with_arguments/model/ScreenArguments.dart';
 
 class PageTwo extends StatelessWidget {
   static const routeName = '/pageTwo';
