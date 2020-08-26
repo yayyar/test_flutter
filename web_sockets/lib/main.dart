@@ -50,6 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: InputDecoration(labelText: 'Send a message'),
               ),
             ),
+            /*StreamBuilder widget to listen for new messages.
+              The StreamBuilder widget connects to a Stream and
+              asks Flutter to rebuild every time
+              it receives an event using the given builder() function.*/
             StreamBuilder(
               stream: widget.channel.stream,
               builder: (context, snapshot) {
