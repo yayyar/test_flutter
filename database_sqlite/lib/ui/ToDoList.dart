@@ -45,6 +45,19 @@ class _ToDoListState extends State<ToDoList> {
                     color: Colors.white10,
                     child: new ListTile(
                       title: _toDoList[position],
+                      onLongPress: (){
+                        _updateItem(_toDoList[position], position);
+                      },
+                      trailing: Listener(
+                        key: Key(_toDoList[position].itemName),
+                        child: new Icon(
+                          Icons.remove_circle,
+                          color: Colors.redAccent,
+                        ),
+                        onPointerDown: (pointerEvent){
+                          _deleteToDoItem(_toDoList[position].id,position);
+                        },
+                      ),
                     ),
                   );
                 }),
@@ -112,5 +125,76 @@ class _ToDoListState extends State<ToDoList> {
       _toDoList.insert(0, _addItem);
     });
     Navigator.pop(context);
+  }
+
+  //delete item
+  _deleteToDoItem(int id, int position) async {
+    await db.deleteItem(id);
+    setState(() {
+      _toDoList.removeAt(position);
+    });
+  }
+
+  //update item
+  _updateItem(ToDoItem itemList, int position) {
+    _alertTextController.clear();
+    var alert = new AlertDialog(
+      title: new Text("Update item"),
+      content: new Row(
+        children: <Widget>[
+          new Expanded(
+            child: new TextField(
+              controller: _alertTextController,
+              decoration: new InputDecoration(
+                labelText: "Item",
+                hintText: "eg: To study",
+                icon: Icon(Icons.update),
+              ),
+            ),
+          )
+        ],
+      ),
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () async {
+            if (_alertTextController.text.isEmpty ||
+                _alertTextController.text == null) {
+              return;
+            }
+            ToDoItem _updateItem = ToDoItem.fromMap({
+              "itemName": _alertTextController.text,
+              "dateCreated": dateFormatted(),
+              "id": itemList.id
+            });
+            _handleSubmitUpdate(itemList,position);
+            await db.updateItem(_updateItem);
+            setState(() {
+              _readToDoList();
+            });
+            Navigator.pop(context);
+          },
+          child: Text("Update"),
+        ),
+        new FlatButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text("Cancel"),
+        )
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (_) {
+          return alert;
+        });
+  }
+
+  void _handleSubmitUpdate(ToDoItem itemList, int position) {
+    setState(() {
+      // ignore: missing_return
+      _toDoList.removeWhere((element){
+        // ignore: unnecessary_statements
+        _toDoList[position].itemName == itemList.itemName;
+      });
+    });
   }
 }

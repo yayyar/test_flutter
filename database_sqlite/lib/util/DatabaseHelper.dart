@@ -78,6 +78,23 @@ class DatabaseHelper {
     }
   }
 
+  //Delete
+  // use whereArgs for more secure and to prevent sql injection
+  Future<int> deleteItem(int id) async {
+    var dbClient = await getDb;
+    var result =
+        dbClient.delete(_tableName, where: "$_id = ? ", whereArgs: [id]);
+    return result;
+  }
+
+  //Updated
+  Future<int> updateItem(ToDoItem toDoItem) async {
+    var dbClient = await getDb;
+    var result = await dbClient.update(_tableName, toDoItem.toMap(),
+        where: "$_id = ?", whereArgs: [toDoItem.id]);
+    return result;
+  }
+
   //close db
   Future close() async {
     var dbClient = await getDb;
