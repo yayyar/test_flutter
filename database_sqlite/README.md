@@ -6,5 +6,6 @@ A new Flutter project.
 - [sqflite](https://pub.dev/packages/sqflite)
 - [intl](https://pub.dev/packages/intl)
 
-### intl package documentation for format data(eg: format date,...)
+### package documentation
+- [sqflite documentation](https://github.com/tekartik/sqflite/blob/master/sqflite/doc/sql.md)
 - [intl documentation](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)
