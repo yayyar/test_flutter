@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -8,7 +9,10 @@ import 'data_modal/Album.dart';
 
 Future<Album> fetchAlbum() async {
   final response =
-  await http.get('https://jsonplaceholder.typicode.com/albums/1');
+  await http.get('https://jsonplaceholder.typicode.com/albums/1',
+    //To fetch data from most web services, you need to provide authorization.
+    //Add authorization
+    headers: {HttpHeaders.authorizationHeader: "Basic your_api_token_here"},);
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
