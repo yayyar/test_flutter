@@ -12,8 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
+  var _notiCount;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 //24 hour format to set notification time
                 await notificationService.scheduleNotification();
+              },
+            ),
+            RaisedButton(
+              child: Text('Attachment Notification'),
+              onPressed: () async {
+                //24 hour format to set notification time
+                await notificationService.showNotificationWithAttachment();
+                _notiCount = await notificationService.getPendingNotificationCount();
+                print('Count $_notiCount');
               },
             ),
           ],

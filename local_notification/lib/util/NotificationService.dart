@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'dart:io' show Platform;
+import 'dart:io' show File, Platform;
 
 import 'package:local_notification/model/NotificationData.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:http/http.dart' as http;
 
 class NotificationService {
   //declare flutter notification plugin
@@ -210,6 +212,55 @@ class NotificationService {
       platformChannelSpecifics,
       payload: 'Test Payload',
     );
+  }
+
+  // with attachment
+  Future<void> showNotificationWithAttachment() async {
+    var attachmentPicturePath = await _downloadAndSaveFile(
+        'https://via.placeholder.com/800x200', 'attachment_img.jpg');
+    var iOSPlatformSpecifics = IOSNotificationDetails(
+      attachments: [IOSNotificationAttachment(attachmentPicturePath)],
+    );
+    var bigPictureStyleInformation = BigPictureStyleInformation(
+      FilePathAndroidBitmap(attachmentPicturePath),
+      contentTitle: '<b>Attached Image</b>',
+      htmlFormatContentTitle: true,
+      summaryText: 'Test Image',
+      htmlFormatSummaryText: true,
+    );
+    var androidChannelSpecifics = AndroidNotificationDetails(
+      'CHANNEL ID 5',
+      'CHANNEL NAME 5',
+      'CHANNEL DESCRIPTION 5',
+      importance: Importance.High,
+      priority: Priority.High,
+      styleInformation: bigPictureStyleInformation,
+    );
+    var notificationDetails =
+    NotificationDetails(androidChannelSpecifics, iOSPlatformSpecifics);
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Title with attachment',
+      'Body with Attachment',
+      notificationDetails,
+      payload: 'Test Attachment'
+    );
+  }
+
+  _downloadAndSaveFile(String url, String fileName) async {
+    var directory = await getApplicationDocumentsDirectory();
+    var filePath = '${directory.path}/$fileName';
+    var response = await http.get(url);
+    var file = File(filePath);
+    await file.writeAsBytes(response.bodyBytes);
+    return filePath;
+  }
+
+  //get pending notification count
+  Future<int> getPendingNotificationCount() async {
+    List<PendingNotificationRequest> p =
+    await flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    return p.length;
   }
 
   //cancel notification
