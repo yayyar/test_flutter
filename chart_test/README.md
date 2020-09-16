@@ -1,6 +1,8 @@
 # chart_test
 
-A new Flutter project.
+- [reference](https://github.com/imaNNeoFighT/fl_chart/tree/master/example)
+- [fl_chart documentation](https://github.com/imaNNeoFighT/fl_chart/blob/master/repo_files/documentations/index.md)
+- [fl_chart package](https://pub.dev/packages/fl_chart)
 
 ## Getting Started
 
