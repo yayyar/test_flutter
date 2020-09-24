@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
 //          PieChartSample1(),
 //          PieChartSample2(),
           CustomPieChart(),
-          CustomBarChart(),
+//          CustomBarChart(),
 //          BarChartSample2(),
 //          BarChartSample3(),
         ],
