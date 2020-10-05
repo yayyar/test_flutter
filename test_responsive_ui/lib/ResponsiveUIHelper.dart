@@ -37,6 +37,10 @@ class ResponsiveUIHelper {
     return w.ceilToDouble();
   }
 
+  Orientation getDeviceOrientation(BuildContext context){
+    return MediaQuery.of(context).orientation;
+  }
+
   //endregion
   //region TextStyle
   TextStyle getTextStyleRegular(

@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(left: 32.0, right: 32.0),
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 20.0),
-                        height: MediaQuery.of(context).orientation == Orientation.portrait ? ResponsiveUIHelper().getProportionalHeight(height: 16.0)
+                        height: ResponsiveUIHelper().getDeviceOrientation(context) == Orientation.portrait ? ResponsiveUIHelper().getProportionalHeight(height: 16.0)
                         : ResponsiveUIHelper().getProportionalHeight(height: 20.0),
                         child: RaisedButton(
                           onPressed: () {
@@ -111,12 +111,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               return MasterDetailPage();
                             }));
                           },
-                          color: Colors.blue,
+                          color: ResponsiveUIHelper().getDeviceOrientation(context) == Orientation.portrait ? Colors.blue : Colors.black45,
                           child: Text(
                             'Orientation Test',
                             style: ResponsiveUIHelper().getTextStyleRegular(
                                 color: Colors.white,
-                                fontSize: MediaQuery.of(context).orientation == Orientation.portrait ? 6 : 2,
+                                fontSize: ResponsiveUIHelper().getDeviceOrientation(context)== Orientation.portrait ? 6 : 2,
                             ),
                           ),
                         ),
