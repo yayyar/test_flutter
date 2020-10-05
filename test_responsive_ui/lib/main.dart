@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Text(
             'Hello',
             style: ResponsiveUIHelper()
-                .getTextStyleRegular(fontSize: 30, fontName: "Dancing"),
+                .getTextStyleRegular(fontSize: MediaQuery.of(context).orientation == Orientation.portrait ? 30 : 20, fontName: "Dancing"),
           ),
         ),
       ),
