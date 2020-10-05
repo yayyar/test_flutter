@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:test_responsive_ui/ResponsiveUIHelper.dart';
+import 'package:test_responsive_ui/ui/MasterDetailPage.dart';
 
 void main() {
   runApp(
@@ -42,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final screeSize = MediaQuery.of(context).size;
     ResponsiveUIHelper().updateScreenDimension(
         width: screeSize.width, height: screeSize.height);
-    debugPrint('Size => ' + screeSize.toString());
+    //debugPrint('Size => ' + screeSize.toString());
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -74,20 +75,57 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Text(
-              'Style Two',
-              style: ResponsiveUIHelper()
-                  .getTextStyleRegular(fontSize: 40, fontName: "Dancing"),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  width: ResponsiveUIHelper().getProportionalWidth(width: 100),
-                  height: ResponsiveUIHelper().getProportionalHeight(height: 100),
-                  child: Image(
-                    image: AssetImage('images/my_wallet_wlo_pro.png'),
-                  )),
-            ),
+            Expanded(
+              child: ListView(
+                children: [
+                  Center(
+                    child: Text(
+                      'Style Two',
+                      style: ResponsiveUIHelper().getTextStyleRegular(
+                          fontSize: 40, fontName: "Dancing"),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                        width: ResponsiveUIHelper()
+                            .getProportionalWidth(width: 100),
+                        height: ResponsiveUIHelper()
+                            .getProportionalHeight(height: 100),
+                        child: Image(
+                          image: AssetImage('images/my_wallet_wlo_pro.png'),
+                        )),
+                  ),
+                  FittedBox(
+                    fit: BoxFit.fill,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 20.0),
+                        height: MediaQuery.of(context).orientation == Orientation.portrait ? ResponsiveUIHelper().getProportionalHeight(height: 16.0)
+                        : ResponsiveUIHelper().getProportionalHeight(height: 20.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return MasterDetailPage();
+                            }));
+                          },
+                          color: Colors.blue,
+                          child: Text(
+                            'Orientation Test',
+                            style: ResponsiveUIHelper().getTextStyleRegular(
+                                color: Colors.white,
+                                fontSize: MediaQuery.of(context).orientation == Orientation.portrait ? 6 : 2,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
@@ -102,8 +140,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: Text(
             'Hello',
-            style: ResponsiveUIHelper()
-                .getTextStyleRegular(fontSize: MediaQuery.of(context).orientation == Orientation.portrait ? 30 : 20, fontName: "Dancing"),
+            style: ResponsiveUIHelper().getTextStyleRegular(
+                fontSize:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 30
+                        : 20,
+                fontName: "Dancing"),
           ),
         ),
       ),
