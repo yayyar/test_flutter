@@ -37,12 +37,29 @@ class ResponsiveUIHelper {
     return w.ceilToDouble();
   }
 
-  Orientation getDeviceOrientation(BuildContext context){
+  //device orientation
+  Orientation getDeviceOrientation(BuildContext context) {
     return MediaQuery.of(context).orientation;
   }
 
-  //endregion
-  //region TextStyle
+  //Large screen is any screen whose width is more than 1200 pixels
+  static bool isLargeScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width > 1200;
+  }
+
+  //Small screen is any screen whose width is less than 800 pixels
+  static bool isSmallScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width < 800;
+  }
+
+  //Medium screen is any screen whose width is less than 1200 pixels,
+  //and more than 800 pixels
+  static bool isMediumScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width > 800 &&
+        MediaQuery.of(context).size.width < 1200;
+  }
+  
+  //regular TextStyle
   TextStyle getTextStyleRegular(
       {String fontName = 'Roboto-Regular',
       int fontSize = 12,
@@ -52,7 +69,8 @@ class ResponsiveUIHelper {
       double lineSpacing}) {
     double finalFontSize = fontSize.toDouble();
     if (isChangeAccordingToDeviceSize && this._currentScreenWidth != null) {
-      finalFontSize = (finalFontSize * _currentScreenWidth) / _referenceScreenWidth;
+      finalFontSize =
+          (finalFontSize * _currentScreenWidth) / _referenceScreenWidth;
     }
     if (characterSpacing != null) {
       return TextStyle(
