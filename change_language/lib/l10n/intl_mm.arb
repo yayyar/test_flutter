@@ -1,0 +1,15 @@
+{
+  "@@last_modified": "2020-10-08T13:39:56.580299",
+  "heyWorld": "ဟေးကမ္ဘာ",
+  "@heyWorld": {
+    "description": "နှုတ်ခွန်းဆက်ရန်ရိုးရှင်းသောစကားလုံး",
+    "type": "text",
+    "placeholders": {}
+  },
+  "goodMorning": "မင်္ဂလာနံနက်ခင်းပါ",
+  "@goodMorning": {
+    "description": "အားလုံးမင်္ဂလာပါ",
+    "type": "text",
+    "placeholders": {}
+  }
+}
