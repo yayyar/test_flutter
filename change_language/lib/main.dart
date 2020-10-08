@@ -1,14 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'locale/app_localization.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   AppLocalizationDelegate _localeOverrideDelegate =
   AppLocalizationDelegate(Locale('en', 'US'));
+
+  _getLanguageKey() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print('${prefs.getString('languageCode')} , ${prefs.getString('countryCode')}');
+    String languageCode = prefs.getString('languageCode');
+    String countryCode = prefs.getString('countryCode');
+    if(languageCode != null || countryCode != null){
+      return Locale(languageCode,countryCode);
+    }else{
+      return null;
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getLanguageKey().then((locale){
+      setState(() {
+        if(locale  != null) AppLocalization.load(locale);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 setState(() {
                   AppLocalization.load(Locale('en','US'));
+                  _setLanguageKey('en','US');
                 });
               },
               child: Text(
@@ -90,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: (){
                 setState(() {
                   AppLocalization.load(Locale('mm','MM'));
+                  _setLanguageKey('mm','MM');
                 });
               },
               child: Text(
@@ -103,5 +134,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  _setLanguageKey(_languageCode,_countryCode) async {
+    print('_languageCode $_languageCode , _countryCode $_countryCode');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('languageCode', '$_languageCode');
+    await prefs.setString('countryCode', '$_countryCode');
   }
 }
