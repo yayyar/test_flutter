@@ -59,6 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 20,
               ),
             ),
+            Text(
+              '${AppLocalization.of(context).sayHello}',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
             SizedBox(
               height: 20,
             ),

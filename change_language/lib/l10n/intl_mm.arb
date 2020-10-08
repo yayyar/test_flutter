@@ -11,5 +11,11 @@
     "description": "အားလုံးမင်္ဂလာပါ",
     "type": "text",
     "placeholders": {}
+  },
+  "sayHello": "ဟယ်လို",
+  "@sayHello": {
+    "description": "အားလုံးပဲမင်္ဂလာပါ ",
+    "type": "text",
+    "placeholders": {}
   }
 }

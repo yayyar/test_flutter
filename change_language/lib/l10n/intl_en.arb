@@ -11,5 +11,11 @@
     "description": "Good morning everybody ",
     "type": "text",
     "placeholders": {}
+  },
+  "sayHello": "Hello",
+  "@sayHello": {
+    "description": "Hello everybody ",
+    "type": "text",
+    "placeholders": {}
   }
 }

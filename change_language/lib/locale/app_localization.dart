@@ -33,6 +33,14 @@ class AppLocalization {
       desc: 'Good morning everybody ',
     );
   }
+
+  String get sayHello {
+    return Intl.message(
+      'Hello',
+      name: 'sayHello',
+      desc: 'Hello everybody ',
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization>{
