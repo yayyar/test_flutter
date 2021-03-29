@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_fl_animation/ani/AnimatedAlignTest.dart';
 import 'package:test_fl_animation/ani/FadeIn.dart';
 import 'package:test_fl_animation/ani/ShapeShift.dart';
 
@@ -41,20 +42,27 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               onPressed: (){
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => FadeIn()));
               },
               child: Text("FadeIn"),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: (){
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ShapeShift()));
               },
               child: Text("ShapeShift"),
             ),
+            ElevatedButton(
+                onPressed: (){
+                  Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AnimatedAlignTest()));
+                },
+                child: Text("AnimatedAlign")
+            )
           ],
         ),
       ),
