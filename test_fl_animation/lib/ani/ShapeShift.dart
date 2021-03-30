@@ -10,9 +10,9 @@ class ShapeShift extends StatefulWidget {
 }
 
 class _ShapeShiftState extends State<ShapeShift> {
-  Color color;
-  double borderRadius;
-  double margin;
+  Color color = Colors.white;
+  double borderRadius = 2.0;
+  double margin = 2.0;
 
   @override
   Widget build(BuildContext context) {

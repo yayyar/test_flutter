@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_fl_animation/ani/AnimatedAlignTest.dart';
+import 'package:test_fl_animation/ani/AnimatedBuilderTest.dart';
 import 'package:test_fl_animation/ani/FadeIn.dart';
 import 'package:test_fl_animation/ani/ShapeShift.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -43,30 +44,38 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              onPressed: (){
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FadeIn()));
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => FadeIn()));
               },
               child: Text("FadeIn"),
             ),
             ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ShapeShift()));
               },
               child: Text("ShapeShift"),
             ),
             ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AnimatedAlignTest()));
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AnimatedAlignTest()));
                 },
-                child: Text("AnimatedAlign")
-            )
+                child: Text("AnimatedAlign")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AnimatedBuilderTest()));
+                },
+                child: Text("AnimatedBuilder"))
           ],
         ),
       ),
     );
   }
-
 }
