@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_fl_animation/ani/AnimatedAlignTest.dart';
 import 'package:test_fl_animation/ani/AnimatedBuilderTest.dart';
+import 'package:test_fl_animation/ani/AnimatedCorssFadeTest.dart';
 import 'package:test_fl_animation/ani/FadeIn.dart';
 import 'package:test_fl_animation/ani/ShapeShift.dart';
 
@@ -72,7 +73,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       MaterialPageRoute(
                           builder: (context) => AnimatedBuilderTest()));
                 },
-                child: Text("AnimatedBuilder"))
+                child: Text("AnimatedBuilder")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AnimatedCrossFadeTest()));
+                },
+                child: Text("AnimatedCrossFade"))
           ],
         ),
       ),

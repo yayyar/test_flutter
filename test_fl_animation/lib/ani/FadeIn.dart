@@ -21,16 +21,16 @@ class _FadeInState extends State<FadeIn> {
         Image.network(owl_url),
         TextButton(
             child: Text(
-              'Show details',
+              opacityLevel == 0.0 ?  'Show details' : 'Show less',
               style: TextStyle(color: Colors.blueAccent),
             ),
             onPressed: (){
               setState(() {
-                opacityLevel = 1;
+                opacityLevel = opacityLevel == 0.0 ? 1.0 : 0.0;
               });
             }),
         AnimatedOpacity(
-          duration: Duration(seconds: 2),
+          duration: Duration(seconds: 1),
           opacity: opacityLevel,
           child: Column(
             children: [
