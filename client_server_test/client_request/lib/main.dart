@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _makeRequest() async {
+    // 10.0.2.2 is androidEmulatorLocalhost
     var url = Platform.isAndroid ? Uri.parse('http://10.0.2.2:3000') : Uri.parse('http://localhost:3000/');
     Response _response = await get(url);
     print('Response=> ${_response.toString()}');
