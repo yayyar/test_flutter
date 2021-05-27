@@ -46,7 +46,7 @@ class XDProfileGallery extends StatelessWidget {
           ),
           Pinned.fromPins(
             Pin(size: 111.0, middle: 0.4886),
-            Pin(size: 33.0, middle: 0.3123),
+            Pin(size: 33.0, middle: 0.3000),
             child: Text(
               'Tony Jork',
               style: TextStyle(
@@ -60,7 +60,7 @@ class XDProfileGallery extends StatelessWidget {
           ),
           Pinned.fromPins(
             Pin(start: 20.0, end: 21.0),
-            Pin(size: 373.0, end: 26.0),
+            Pin(size: 373.0, end: 70.0),
             child: Stack(
               children: <Widget>[
                 Pinned.fromPins(
