@@ -1,4 +1,5 @@
 import 'package:adobe_xd_ui/XDProfileGallery.dart';
+//import 'package:adobe_xd_ui/testxd.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
           title: Text("XD To Flutter"),
         ),
         body: XDProfileGallery(),
+        // body: TestXD(), // Testing detail XD_api
       ),
     );
   }
