@@ -1,3 +1,4 @@
+import 'package:adobe_xd_ui/Home.dart';
 import 'package:adobe_xd_ui/XDProfileGallery.dart';
 //import 'package:adobe_xd_ui/testxd.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +17,14 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primarySwatch: Colors.green,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("XD To Flutter"),
-        ),
-        body: XDProfileGallery(),
-        // body: TestXD(), // Testing detail XD_api
-      ),
+      home: Home(),
+      // home: Scaffold(
+      //   appBar: AppBar(
+      //     title: Text("XD To Flutter"),
+      //   ),
+      //   // body: XDProfileGallery(),
+      //   // body: TestXD(), // Testing detail XD_api
+      // ),
     );
   }
 }
