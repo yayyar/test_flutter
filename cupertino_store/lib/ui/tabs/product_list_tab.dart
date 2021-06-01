@@ -2,7 +2,7 @@ import 'package:cupertino_store/model/app_state_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-import '../product_row_item.dart';
+import '../components/product_row_item.dart';
 
 class ProductListTab extends StatelessWidget {
   const ProductListTab({Key? key}) : super(key: key);
@@ -19,7 +19,6 @@ class ProductListTab extends StatelessWidget {
               largeTitle: Text('Cupertino Store'),
             ),
             SliverSafeArea(
-              // BEGINNING OF NEW CONTENT
               top: false,
               minimum: const EdgeInsets.only(top: 8),
               sliver: SliverList(
