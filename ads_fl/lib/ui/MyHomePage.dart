@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ads_fl/ui/inline_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:ads_fl/ad_helper.dart';
@@ -58,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.center,
                   ),
                   ElevatedButton(
-                      onPressed: () => _requestAds(), child: Text('Banner'))
+                      onPressed: () => _requestAds(), child: Text('Request Ads')),
+                  ElevatedButton(onPressed: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => InlineBanner())), child: Text('Inline Banner'))
                 ]);
               }
             }
