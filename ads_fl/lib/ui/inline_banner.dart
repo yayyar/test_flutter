@@ -48,7 +48,7 @@ class _InlineBannerState extends State<InlineBanner> {
           },
         ),
       );
-      _ad.load();
+      await _ad.load();
 
     } else {
       setState(() {
@@ -80,9 +80,9 @@ class _InlineBannerState extends State<InlineBanner> {
         child: _isLoading
             ? Center(
                 child: SizedBox(
-                  child: CircularProgressIndicator(),
                   width: 48.0,
                   height: 48.0,
+                  child: CircularProgressIndicator(),
                 ),
               )
             : ListView.builder(
@@ -91,10 +91,10 @@ class _InlineBannerState extends State<InlineBanner> {
 
                   if( _isAdLoaded && _kAdIndex == index){
                     return Container(
-                      child: AdWidget(ad: _ad),
                       width: _ad.size.width.toDouble(),
                       height: 72.0,
                       alignment: Alignment.center,
+                      child: AdWidget(ad: _ad),
                     );
                   }
                   else {

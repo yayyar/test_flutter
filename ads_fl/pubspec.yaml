@@ -26,6 +26,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_mobile_ads: ^0.13.0
   http: ^0.13.3
+  pedantic: ^1.11.0
 
 dev_dependencies:
   flutter_test:

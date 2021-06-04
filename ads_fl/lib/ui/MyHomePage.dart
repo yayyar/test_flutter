@@ -39,14 +39,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: FutureBuilder<InitializationStatus>(
           future: _initGoogleMobileAds(),
           builder: (context, snapshot) {
-            List<Widget> children = [];
+            var children = <Widget>[];
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               children.add(Center(
                 child: SizedBox(
-                  child: CircularProgressIndicator(),
                   width: 48.0,
                   height: 48.0,
+                  child: CircularProgressIndicator(),
                 ),
               ));
             } else {
@@ -54,10 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children.addAll([
                   if (_isAdLoaded)
                     Container(
-                      child: AdWidget(ad: _ad),
                       width: _ad.size.width.toDouble(),
                       height: 72.0,
                       alignment: Alignment.center,
+                      child: AdWidget(ad: _ad),
                     ),
                   ElevatedButton(
                       onPressed: () => _requestAds(),
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _requestAds() {
+  void _requestAds() {
     print('Request Ads');
     _ad = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
