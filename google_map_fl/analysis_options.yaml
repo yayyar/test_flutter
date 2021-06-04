@@ -16,3 +16,4 @@ linter:
     - slash_for_doc_comments
     - sort_constructors_first
     - unnecessary_brace_in_string_interps
+    - prefer_single_quotes
