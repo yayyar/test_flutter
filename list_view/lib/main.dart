@@ -32,10 +32,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -56,51 +54,63 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Phone'),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32.0,8.0,32.0,8.0),
-            child: RaisedButton(
+            padding: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
+            child: TextButton(
               child: Text('Horizontal List'),
-              onPressed: (){
+              onPressed: () {
                 // Go to next screen
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HorizontalListPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HorizontalListPage()));
               },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32.0,8.0,32.0,8.0),
-            child: RaisedButton(
+            padding: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
+            child: TextButton(
               child: Text('Grid List'),
-              onPressed: (){
+              onPressed: () {
                 // Go to next screen
-                Navigator.push(context, MaterialPageRoute(builder: (context) => GridListPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => GridListPage()));
               },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32.0,8.0,32.0,8.0),
-            child: RaisedButton(
+            padding: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
+            child: TextButton(
               child: Text('Custom List'),
-              onPressed: (){
+              onPressed: () {
                 // Go to next screen
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CustomListPage(
-                  items: List<ListItem>.generate(
-                    1000,
-                        (i) => i % 6 == 0
-                        ? HeadingItem("Heading $i")
-                        : MessageItem("Sender $i", "Message body $i"),
-                  ),
-                )));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CustomListPage(
+                              items: List<ListItem>.generate(
+                                1000,
+                                (i) => i % 6 == 0
+                                    ? HeadingItem("Heading $i")
+                                    : MessageItem(
+                                        "Sender $i", "Message body $i"),
+                              ),
+                            )));
               },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32.0,8.0,32.0,8.0),
-            child: RaisedButton(
+            padding: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
+            child: TextButton(
               child: Text('Long List'),
-              onPressed: (){
+              onPressed: () {
                 // Go to next screen
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LongListPage(
-                  items: List<String>.generate(10000, (i) => "Item $i"),
-                )));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LongListPage(
+                              items: List<String>.generate(
+                                  10000, (i) => "Item $i"),
+                            )));
               },
             ),
           ),
