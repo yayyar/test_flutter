@@ -4,3 +4,6 @@
 
 ### If found `pod install` issue on iOS
 - [Try it](https://stackoverflow.com/questions/52398435/cocoapods-could-not-find-compatible-versions-for-pod-firebase-core-cloud-fir)
+
+### If found issue on Web Debug
+- [Try it](https://stackoverflow.com/questions/63248596/flutter-web-firebase-typeerror-dart-global-firebase-firestore-is-not-a-function)
