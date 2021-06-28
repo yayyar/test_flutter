@@ -2,6 +2,7 @@ import 'package:fl_firebase_test/src/application_state.dart';
 import 'package:fl_firebase_test/src/authentication.dart';
 import 'package:fl_firebase_test/src/guest_book.dart';
 import 'package:fl_firebase_test/src/widgets.dart';
+import 'package:fl_firebase_test/src/yes_no_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +76,17 @@ class HomePage extends StatelessWidget {
             builder: (context, appState, _) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (appState.attendees >= 2)
+                  Paragraph('${appState.attendees} people going')
+                else if (appState.attendees == 1)
+                  Paragraph('1 person going')
+                else
+                  Paragraph('No one going'),
                 if (appState.loginState == ApplicationLoginState.loggedIn) ...[
+                  YesNoSelection(
+                    state: appState.attending,
+                    onSelection: (attending) => appState.attending = attending,
+                  ),
                   Header('Discussion'),
                   GuestBook(
                     addMessage: (String message) =>
