@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_counter/controller/reactive_counter_controller.dart';
+import 'package:getx_counter/controller/shared_controller.dart';
 import 'package:getx_counter/controller/simple_counter_controller.dart';
 import 'package:getx_counter/services/api_service.dart';
+import 'package:getx_counter/services/counter_service.dart';
 // import 'package:getx_counter/view/new_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -42,6 +44,7 @@ class HomePage extends StatelessWidget {
           Center(
               // Simple state manager (known as GetBuilder)
               child: GetBuilder<SimpleCounterController>(
+            // initState: (state) => _simpleCounterController.increase(),
             init: SimpleCounterController(),
             builder: (value) {
               return Text(
@@ -122,6 +125,17 @@ class HomePage extends StatelessWidget {
                 debugPrint(_apiService.fetchTextFromApi());
               },
             ),
+          ),
+          Center(
+            child: ElevatedButton(
+                child: const Text('Click me'),
+                onPressed: () =>
+                    Get.find<SharedController>().incrementCounter()),
+          ),
+          Center(
+            child: ElevatedButton(
+                child: const Text('Click Service'),
+                onPressed: () => Get.find<CounterService>().incrementCounter()),
           ),
         ],
       ),
