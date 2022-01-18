@@ -1,0 +1,10 @@
+{
+    "buttons": {
+        "login": "၀င်ရန်",
+        "sign_in": "အကောင့်၀င်ရန်",
+        "logout": "ထွက်ရန်",
+        "sign_in_fb": "Facebook ဖြင့် အကောင့်၀င်ရန်",
+        "sign_in_google": "Google ဖြင့် အကောင့်၀င်ပါ",
+        "sign_in_apple": "Apple ဖြင့် အကောင့်၀င်ပါ"
+    }
+}
