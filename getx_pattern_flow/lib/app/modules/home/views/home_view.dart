@@ -30,7 +30,12 @@ class HomeView extends GetView<HomeController> {
                     child: Text(_user.name![0]),
                   ),
                   title: Text('${_user.name}'),
-                  onTap: () => Get.toNamed(Routes.PRODUCT),
+                  onTap: () => {
+                    if (index == 0)
+                      {Get.toNamed(Routes.PHOTO)}
+                    else
+                      {Get.toNamed(Routes.PRODUCT)}
+                  },
                 );
               });
         }

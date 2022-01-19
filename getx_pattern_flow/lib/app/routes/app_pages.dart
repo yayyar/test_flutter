@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/photo/bindings/photo_binding.dart';
+import '../modules/photo/views/photo_view.dart';
 import '../modules/product/bindings/product_binding.dart';
 import '../modules/product/views/product_view.dart';
 import '../modules/product_detail/bindings/product_detail_binding.dart';
@@ -31,5 +33,10 @@ class AppPages {
         binding: ProductDetailBinding(),
         fullscreenDialog: true,
         transition: Transition.cupertino),
+    GetPage(
+      name: _Paths.PHOTO,
+      page: () => PhotoView(),
+      binding: PhotoBinding(),
+    ),
   ];
 }

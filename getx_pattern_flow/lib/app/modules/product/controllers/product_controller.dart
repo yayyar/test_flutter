@@ -6,13 +6,13 @@ import 'package:getx_pattern_flow/app/modules/product/providers/photo_provider.d
 class ProductController extends GetxController {
   var isLoading = true.obs;
   var photoList = <Photo>[].obs;
-  final _photoProvider = PhotoProvider();
+  final _photoProvider = Get.find<PhotoProvider>();
 
   Future<void> getAllPhoto() async {
     try {
       isLoading(true);
       var photo = await _photoProvider.getAllPhoto();
-      // debugPrint('ProductController =>\n $photo');
+      debugPrint('ProductController =>\n $photo');
       photoList.assignAll(photo);
     } catch (e) {
       debugPrint(e.toString());

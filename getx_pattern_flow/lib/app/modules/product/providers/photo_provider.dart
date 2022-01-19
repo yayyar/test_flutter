@@ -1,33 +1,22 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:getx_pattern_flow/app/services/connect_service.dart';
 
 import '../photo_model.dart';
 
-class PhotoProvider extends GetConnect {
-  @override
-  void onInit() {
-    httpClient.defaultDecoder = (map) {
-      if (map is Map<String, dynamic>) return Photo.fromJson(map);
-      if (map is List) return map.map((item) => Photo.fromJson(item)).toList();
-    };
-    httpClient.baseUrl = 'https://jsonplaceholder.typicode.com/photos';
-  }
+class PhotoProvider extends ConnectService {
+  // @override
+  // void onInit() {
+  //   print('PhotoProvider onInit');
+  //   // httpClient.baseUrl = "https://jsonplaceholder.typicode.com";
+  //   httpClient.defaultDecoder = (map) {
+  //     if (map is Map<String, dynamic>) return Photo.fromJson(map);
+  //     if (map is List) return map.map((item) => Photo.fromJson(item)).toList();
+  //   };
+  // }
 
   Future<List<Photo>> getAllPhoto() async {
-    final response = await get('https://jsonplaceholder.typicode.com/photos');
+    final response = await get('/photos');
     var data = response.body as List;
-    // debugPrint('Photo => $data');
-    return data.map((photo) => Photo.fromJson(photo)).toList();
+    return data.map((item) => Photo.fromJson(item)).toList();
+    // return response.body;
   }
-
-  Future<Photo?> getPhoto(int id) async {
-    final response = await get('photo/$id');
-    return response.body;
-  }
-
-  Future<Response<Photo>> postPhoto(Photo photo) async =>
-      await post('photo', photo);
-  Future<Response> deletePhoto(int id) async => await delete('photo/$id');
 }
