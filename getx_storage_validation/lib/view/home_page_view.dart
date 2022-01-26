@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:getx_storage_validation/view/language_service.dart';
+import 'package:getx_storage_validation/view/theme_services.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -29,7 +31,13 @@ class HomePage extends StatelessWidget {
                 onPressed: () {
                   debugPrint('Storage data => ${_storage.read('email')}');
                 },
-                child: const Text('Read'))
+                child: const Text('Read')),
+            ElevatedButton(
+                onPressed: () => ThemeService().switchTheme(),
+                child: Text('buttons_change_theme'.tr)),
+            ElevatedButton(
+                onPressed: () => LanguageService().switchLanguage(),
+                child: Text('buttons_change_language'.tr))
           ],
         ),
       ),
