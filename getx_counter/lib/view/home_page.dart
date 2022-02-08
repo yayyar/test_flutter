@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:getx_counter/controller/reactive_counter_controller.dart';
 import 'package:getx_counter/controller/shared_controller.dart';
@@ -55,6 +56,7 @@ class HomePage extends StatelessWidget {
           )),
           // Reactive state manager (known as GetX/Obx)
           // with GetX
+          const Icon(FontAwesome.diamond),
           Center(
             child: GetX<ReactiveCounterController>(
               init: ReactiveCounterController(),

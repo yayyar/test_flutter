@@ -37,6 +37,7 @@ dependencies:
   get: ^4.6.1
   shared_preferences: ^2.0.12
   flutter_native_splash: ^2.0.1+1
+  fluttericon: ^2.0.0
 
 dev_dependencies:
   flutter_test:
