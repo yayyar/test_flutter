@@ -1,46 +1,47 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-
+import 'package:fetch_data_from_internet/album_provider.dart';
+import 'package:fetch_data_from_internet/check_network_status.dart';
+import 'package:fetch_data_from_internet/page_not_found.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import 'data_modal/Album.dart';
-
-Future<Album> fetchAlbum() async {
-  final response =
-  await http.get('https://jsonplaceholder.typicode.com/albums/1',
-    //To fetch data from most web services, you need to provide authorization.
-    //Add authorization
-    headers: {HttpHeaders.authorizationHeader: "Basic your_api_token_here"},);
-
-  if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
-    return Album.fromJson(json.decode(response.body));
-  } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
-  }
-}
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  Future<Album> futureAlbum;
+  List<Album>? albumList = [];
+  bool isLoading = true;
+
+  getAlbumList() async {
+    setState(() {
+      isLoading = true;
+    });
+    bool canAccess = await CheckNetworkStatus().checkNetwork();
+    if (!canAccess) {
+      print('Can\'t access network');
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
+    var data = await AlbumProvider().getAlbumList();
+    setState(() {
+      albumList = data;
+      isLoading = false;
+    });
+    print(albumList);
+  }
 
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    getAlbumList();
   }
 
   @override
@@ -55,24 +56,20 @@ class _MyAppState extends State<MyApp> {
           title: Text('Fetch Data Example'),
         ),
         body: Center(
-          child: FutureBuilder<Album>(
-            future: futureAlbum,
-            builder: (context, snapshot) {
-              /*Note that snapshot.hasData only returns true
-              when the snapshot contains a non-null data value.
-              This is why the fetchAlbum function should throw an exception
-              even in the case of a “404 Not Found” server response.*/
-              if (snapshot.hasData) {
-                return Text(snapshot.data.title);
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-
-              // By default, show a loading spinner.
-              return CircularProgressIndicator();
-            },
-          ),
-        ),
+            child: isLoading
+                ? CircularProgressIndicator()
+                : albumList!.length <= 0
+                    ? InkWell(
+                        child: Text('Try again'),
+                        onTap: getAlbumList,
+                      )
+                    : ListView.builder(
+                        itemCount: albumList!.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(albumList![index].title ?? ''),
+                          );
+                        })),
       ),
     );
   }
