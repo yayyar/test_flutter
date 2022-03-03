@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:getx_storage_validation/generated/locales.g.dart';
 import 'package:getx_storage_validation/view/home_page_view.dart';
 import 'package:getx_storage_validation/view/language_service.dart';
+import 'package:getx_storage_validation/view/locale_service.dart';
 import 'package:getx_storage_validation/view/theme_services.dart';
 import 'package:getx_storage_validation/view/themes.dart';
 
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
       darkTheme: Themes.dark,
       themeMode: ThemeService().theme,
       translationsKeys: AppTranslation.translations,
-      locale: LanguageService().locale,
+      // locale: LanguageService().locale,
+      locale: LocaleService().locale,
       fallbackLocale: const Locale('en', 'US'),
       home: HomePage(),
     );

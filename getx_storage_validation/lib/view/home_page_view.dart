@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:getx_storage_validation/view/language_service.dart';
+import 'package:getx_storage_validation/view/locale_service.dart';
 import 'package:getx_storage_validation/view/theme_services.dart';
 
 class HomePage extends StatelessWidget {
@@ -37,7 +38,15 @@ class HomePage extends StatelessWidget {
                 child: Text('buttons_change_theme'.tr)),
             ElevatedButton(
                 onPressed: () => LanguageService().switchLanguage(),
-                child: Text('buttons_change_language'.tr))
+                child: Text('buttons_change_language'.tr)),
+            ElevatedButton(
+                onPressed: () =>
+                    LocaleService().switchLanguage(const Locale('my', 'MM')),
+                child: const Text('MM')),
+            ElevatedButton(
+                onPressed: () =>
+                    LocaleService().switchLanguage(const Locale('en', 'US')),
+                child: const Text('EN'))
           ],
         ),
       ),
