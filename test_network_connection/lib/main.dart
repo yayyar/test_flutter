@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:system_settings/system_settings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,48 +41,67 @@ class _MyHomePageState extends State<MyHomePage> {
   ConnectivityResult _connectionResult = ConnectivityResult.none;
   late StreamSubscription<ConnectivityResult> _connectivitySubscription;
   String _connectivityResult = 'NO CONNECTED TO THE INTERNET';
-  // Future<void> listenConnectivity() async {
-  //   _connectionResult = await _connectivity.checkConnectivity();
-
-  //   if (_connectionResult == ConnectivityResult.mobile) {
-  //     // I am connected to a mobile network.
-  //     log('connectivity on MOBILE DATA');
-  //   } else if (_connectionResult == ConnectivityResult.wifi) {
-  //     // I am connected to a wifi network.
-  //     log('connectivity on WIFI');
-  //   } else if (_connectionResult == ConnectivityResult.none) {
-  //     // I am connected to a wifi network.
-  //     log('NO INTERNET CONNECTION');
-  //   }
-  // }
 
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     setState(() {
       _connectionResult = result;
     });
-    log('ConnectivityResult => $_connectionResult');
+    // log('ConnectivityResult => $_connectionResult');
     if (_connectionResult != ConnectivityResult.none) {
       try {
         final result = await InternetAddress.lookup('google.com');
-        log('result => $result');
+        // log('result => $result');
         if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-          log('CONNECTED TO THE INTERNET');
+          // log('CONNECTED TO THE INTERNET');
           setState(() {
             _connectivityResult = 'CONNECTED TO THE INTERNET';
           });
+        } else {
+          _showAlertDialog(context);
         }
       } on SocketException catch (e) {
         log('NOT CONNECTED TO THE INTERNET => $e');
         setState(() {
           _connectivityResult = 'NOT CONNECTED TO THE INTERNET';
         });
+        _showAlertDialog(context);
       }
     } else {
-      log('NO CONNECTION');
+      // log('NO CONNECTION');
       setState(() {
         _connectivityResult = 'NO CONNECTION';
       });
+      _showAlertDialog(context);
     }
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('No Internet Connection'),
+        content:
+            const Text('Turn on cellular data or use Wi-Fi to access data.'),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('OK'),
+          ),
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+              SystemSettings.wireless();
+            },
+            child: const Text('Settings'),
+          )
+        ],
+      ),
+    );
   }
 
   @override
