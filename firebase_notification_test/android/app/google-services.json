@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "609755922927",
+    "project_id": "fl-test-a713a",
+    "storage_bucket": "fl-test-a713a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609755922927:android:40e5465de237d6f77d761a",
+        "android_client_info": {
+          "package_name": "com.wlo.firebaseNotificationTest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609755922927-gl3ib8pn5i2kabkg0afjvou3sjkmu16c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ13LEezTLQwFX7Sk0vjeWgE16ghQBKR4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609755922927-gl3ib8pn5i2kabkg0afjvou3sjkmu16c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
