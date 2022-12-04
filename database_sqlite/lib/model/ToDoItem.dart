@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ToDoItem extends StatelessWidget {
-  int _id;
-  String _itemName;
-  String _dateCreated;
+  int? _id;
+  String? _itemName;
+  String? _dateCreated;
 
   ToDoItem(this._itemName, this._dateCreated);
 
@@ -14,9 +14,9 @@ class ToDoItem extends StatelessWidget {
     this._dateCreated = obj['dateCreated'];
   }
 
-  int get id => _id;
-  String get itemName => _itemName;
-  String get dateCreated => _dateCreated;
+  int? get id => _id;
+  String? get itemName => _itemName;
+  String? get dateCreated => _dateCreated;
 
   Map<String, dynamic> toMap() {
     Map map = new Map<String, dynamic>();
@@ -25,7 +25,7 @@ class ToDoItem extends StatelessWidget {
     }
     map['itemName'] = _itemName;
     map['dateCreated'] = _dateCreated;
-    return map;
+    return map as Map<String, dynamic>;
   }
 
   ToDoItem.fromMap(Map<String, dynamic> map) {
@@ -40,7 +40,7 @@ class ToDoItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          _itemName,
+          _itemName!,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,

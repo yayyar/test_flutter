@@ -20,7 +20,7 @@ class DatabaseHelper {
   final String _itemName = "itemName";
   final String _dateCreated = "dateCreated";
 
-  static Database _db;
+  static Database? _db;
 
   //initiate database
   initDb() async {
@@ -40,12 +40,7 @@ class DatabaseHelper {
 
   //get created database
   Future<Database> get getDb async {
-    if (_db != null) {
-      return _db;
-    } else {
-      _db = await initDb();
-      return _db;
-    }
+    return _db ??= await initDb();
   }
 
   //CRUD Create|Retrieve|Update|Delete
@@ -71,16 +66,12 @@ class DatabaseHelper {
     var dbClient = await getDb;
     String sql = "SELECT * FROM $_tableName WHERE $_id = $id";
     var result = await dbClient.rawQuery(sql);
-    if (result != null) {
-      return ToDoItem.fromMap(result.first);
-    } else {
-      return null;
-    }
+    return ToDoItem.fromMap(result.first);
   }
 
   //Delete
   // use whereArgs for more secure and to prevent sql injection
-  Future<int> deleteItem(int id) async {
+  Future<int> deleteItem(int? id) async {
     var dbClient = await getDb;
     var result =
         dbClient.delete(_tableName, where: "$_id = ? ", whereArgs: [id]);

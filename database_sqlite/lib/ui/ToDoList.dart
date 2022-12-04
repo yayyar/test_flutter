@@ -16,6 +16,7 @@ class _ToDoListState extends State<ToDoList> {
 
   _readToDoList() async {
     List items = await db.getAllItems();
+    _toDoList.clear();
     items.forEach((itemList) {
       setState(() {
         _toDoList.add(ToDoItem.map(itemList));
@@ -45,17 +46,17 @@ class _ToDoListState extends State<ToDoList> {
                     color: Colors.white10,
                     child: new ListTile(
                       title: _toDoList[position],
-                      onLongPress: (){
+                      onLongPress: () {
                         _updateItem(_toDoList[position], position);
                       },
                       trailing: Listener(
-                        key: Key(_toDoList[position].itemName),
+                        key: Key(_toDoList[position].itemName!),
                         child: new Icon(
                           Icons.remove_circle,
                           color: Colors.redAccent,
                         ),
-                        onPointerDown: (pointerEvent){
-                          _deleteToDoItem(_toDoList[position].id,position);
+                        onPointerDown: (pointerEvent) {
+                          _deleteToDoItem(_toDoList[position].id, position);
                         },
                       ),
                     ),
@@ -92,17 +93,17 @@ class _ToDoListState extends State<ToDoList> {
         ],
       ),
       actions: <Widget>[
-        new FlatButton(
+        new ElevatedButton(
           onPressed: () {
             if (_alertTextController.text.isEmpty ||
-                _alertTextController.text == null) {
+                _alertTextController.text.isEmpty) {
               return;
             }
             _handleSubmit(_alertTextController.text);
           },
           child: Text("Save"),
         ),
-        new FlatButton(
+        ElevatedButton(
           onPressed: () => Navigator.pop(context),
           child: Text("Cancel"),
         )
@@ -128,7 +129,7 @@ class _ToDoListState extends State<ToDoList> {
   }
 
   //delete item
-  _deleteToDoItem(int id, int position) async {
+  _deleteToDoItem(int? id, int position) async {
     await db.deleteItem(id);
     setState(() {
       _toDoList.removeAt(position);
@@ -138,6 +139,7 @@ class _ToDoListState extends State<ToDoList> {
   //update item
   _updateItem(ToDoItem itemList, int position) {
     _alertTextController.clear();
+    _alertTextController.text = itemList.itemName ?? '';
     var alert = new AlertDialog(
       title: new Text("Update item"),
       content: new Row(
@@ -155,10 +157,10 @@ class _ToDoListState extends State<ToDoList> {
         ],
       ),
       actions: <Widget>[
-        new FlatButton(
+        ElevatedButton(
           onPressed: () async {
             if (_alertTextController.text.isEmpty ||
-                _alertTextController.text == null) {
+                _alertTextController.text.isEmpty) {
               return;
             }
             ToDoItem _updateItem = ToDoItem.fromMap({
@@ -166,7 +168,6 @@ class _ToDoListState extends State<ToDoList> {
               "dateCreated": dateFormatted(),
               "id": itemList.id
             });
-            _handleSubmitUpdate(itemList,position);
             await db.updateItem(_updateItem);
             setState(() {
               _readToDoList();
@@ -175,7 +176,7 @@ class _ToDoListState extends State<ToDoList> {
           },
           child: Text("Update"),
         ),
-        new FlatButton(
+        ElevatedButton(
           onPressed: () => Navigator.pop(context),
           child: Text("Cancel"),
         )
@@ -186,15 +187,5 @@ class _ToDoListState extends State<ToDoList> {
         builder: (_) {
           return alert;
         });
-  }
-
-  void _handleSubmitUpdate(ToDoItem itemList, int position) {
-    setState(() {
-      // ignore: missing_return
-      _toDoList.removeWhere((element){
-        // ignore: unnecessary_statements
-        _toDoList[position].itemName == itemList.itemName;
-      });
-    });
   }
 }
