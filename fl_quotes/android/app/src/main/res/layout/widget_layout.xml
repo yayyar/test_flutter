@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@drawable/widget_style">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/widgetImageView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+        <TextView
+            android:id="@+id/tv_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="12dp"
+            android:text="--"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_counter"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_alignParentTop="true"-->
+    <!--            android:gravity="center_horizontal"-->
+    <!--            android:padding="12dp"-->
+    <!--            android:text="&#45;&#45;"-->
+    <!--            android:textColor="@android:color/white"-->
+    <!--            android:textSize="16sp" />-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/bt_update"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_alignParentBottom="true"-->
+    <!--            android:text="Update Counter"-->
+    <!--            android:textColor="@android:color/holo_blue_dark"-->
+    <!--            android:textSize="12sp" />-->
+    <!--    </RelativeLayout>-->
+</FrameLayout>

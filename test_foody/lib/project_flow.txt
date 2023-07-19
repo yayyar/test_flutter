@@ -1,0 +1,26 @@
+1. Database => sqflite
+2. State Management => provider
+
+Page One => Show All Data
+Page two => Add Data
+
+// Code Flow
+
+1. View
+2. Controller
+3. Service
+
+View  <==>  Controller    <==>     Service
+
+// View => flutter UI widget
+// Controller => Provider State Management
+// Service => Database / http
+
+
+// if insertData is success, show All data in first view <== we want this
+// addData() <= insert
+// getAllData() <= to show UI
+
+// second page, after add data, get all data => notifyLisener();
+
+// dataList , first view 

@@ -1,0 +1,18 @@
+// APP State Management
+// Use Provider package
+
+1. Declare Provider class
+2. Activate Provider
+3. Inject/Call method Provider
+4. Use data from Provider class
+
+// Center -> Column -> [TExt, Button, Icon, Image, Container -> TExt]
+// BuildContext 
+
+// Provider.of<CounterModle>
+// Provider -> 
+
+// Girl
+// Girl -> Hnin Cherry
+
+// Girl -> Ma Ma, Hla Hla
