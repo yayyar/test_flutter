@@ -1,6 +1,10 @@
 # test_power_button_detection
 
-A new Flutter project.
+This power button detection sample project repo.
+
+Testing             |
+:-------------------------:|
+<img src="https://github.com/winhc/test_flutter/blob/master/test_power_button_detection/test_record/testing.gif" width="800" height="1260" /> | 
 
 ## Getting Started
 
