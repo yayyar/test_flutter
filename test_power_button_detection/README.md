@@ -1,6 +1,6 @@
 # test_power_button_detection
 
-This power button detection sample project repo.
+This is power button detection sample project repo.
 
 Testing             |
 :-------------------------:|
